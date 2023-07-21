@@ -1,0 +1,12 @@
+fullvisitorid
+channelgrouping
+time
+country
+city
+totaltransactionrevenue
+pageviews
+timeonsite
+date
+pagetitle
+searchkeyword
+pagepathlevel1
