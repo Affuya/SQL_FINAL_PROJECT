@@ -105,6 +105,8 @@ Question 5:
 SQL Queries:
 
 Answer:
+-----------------------------------------------------------------------------------------------
+
 
 ADDITIONAL QUESTIONS THE DATA CAN PROVIDE
 --What are the top countries and cities by total transaction revenue?

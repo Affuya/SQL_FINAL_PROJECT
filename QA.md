@@ -9,7 +9,7 @@ What are your risk areas? Identify and describe them.
 
 5) Interpretation Bias: Ensuring objectivity in data interpretation and analysis is important to avoid introducing biases into the insights drawn from the dataset.
 
-
+------------------------------------------------------------------------------------------------------------------------------------------------------
 QA Process:
 Describe your QA process and include the SQL queries used to execute it.
 1) Data Quality Check:
