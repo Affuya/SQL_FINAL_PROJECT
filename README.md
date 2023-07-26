@@ -36,22 +36,46 @@ visitor behavior, and geographic trends, enabling data-driven decision-making to
 ### (your step 1)
 ### (your step 2)
 
--- STEP 1: Created all_sessions_excel table directly from pgadmin -- STEP 2: Created products-excel table using code below
+### STEP 1: Created all_sessions_excel table directly from pgadmin -- STEP 2: Created products-excel table using code below
 
+```SQL
 CREATE TABLE IF NOT EXISTS products( SKU VARCHAR(50), name VARCHAR(300), orderedQuantity INT DEFAULT 0, stockLevel INT DEFAULT 0, 
 restockingLeadTime INT DEFAULT 0, sentimentScore FLOAT, sentimentMagnitude FLOAT);
+```
 
--- STEP 3: Creating sales_by_sku_excel table with code below CREATE TABLE IF NOT EXISTS sales_by_sku( productSKU VARCHAR(100), 
+### STEP 3: Creating sales_by_sku_excel table with code below 
+```SQL
+CREATE TABLE IF NOT EXISTS sales_by_sku( productSKU VARCHAR(100), 
 total_ordered INT DEFAULT 0);
+```
 
--- STEP 4: Creating analytics-excel table using below code CREATE TABLE IF NOT EXISTS "analytics"( visitNumber INT DEFAULT 0, 
+### STEP 4: Creating analytics-excel table using below code 
+```SQL
+CREATE TABLE IF NOT EXISTS "analytics"( visitNumber INT DEFAULT 0, 
 visitId INT PRIMARY KEY, visitStartTime TIME, date DATE, fullvisitorId INT DEFAULT 0, userid INT, channelGrouping VARCHAR(300), 
 socialEngagementType VARCHAR(300), units_sold INT DEFAULT 0, pageviews INT DEFAULT 0, timeonsite TIMESTAMP, bounces INT DEFAULT 0, revenue INT DEFAULT 0, unit_price INT DEFAULT 0);
+```
 
--- STEP 5 Creating sales_report-excel table using below code CREATE TABLE IF NOT EXISTS "sales_report"( productSKU VARCHAR(50), 
+### STEP 5 Creating sales_report-excel table using below code 
+```SQL
+CREATE TABLE IF NOT EXISTS "sales_report"( productSKU VARCHAR(50), 
 total_ordered INT DEFAULT 0, name VARCHAR(100), stockLevel INT DEFAULT 0, restockingLeadTime INT DEFAULT 0, sentimentScore FLOAT, sentimentMagnitude FLOAT, ratio FLOAT);
+```
 ## Results
 (fill in what you discovered this data could tell you and how you used the data to answer those questions)
+### Based on the dataset, I discovered several valuable insights that helped answer important business questions:
+
+#### 1. Geographic Revenue Impact: By analyzing total transaction revenue for each city and country, I identified regions with the highest revenue contribution. This information allowed me to prioritize marketing efforts and allocate resources to areas with the most significant revenue potential.
+
+#### 2. Top-Selling Products: Through product sales pattern analysis, I identified the top-selling products and their popularity across different regions. This knowledge informed inventory management decisions and helped optimize product offerings to meet customer demands.
+
+#### 3. Visitor Behavior: Studying visitor behavior metrics, such as session duration, page views, and search keywords, provided insights into how visitors interacted with the website. Understanding visitor behavior helped improve the website's user experience and optimize content to increase engagement.
+
+#### 4. Product Sentiment Analysis: Analyzing product sentiment scores allowed me to gauge customer sentiments toward different products. Positive sentiment scores indicated well-received products, while negative scores highlighted areas for improvement or potential issues.
+
+#### 5. Geographic Distribution: Exploring the geographic distribution of visitors and customers revealed areas with higher demand for products. This information guided targeted marketing strategies to maximize reach and sales in specific regions.
+
+By leveraging these insights, I was able to provide data-driven recommendations to improve business performance, optimize product offerings, enhance customer experiences, and identify growth opportunities. The data-driven approach enabled stakeholders to make informed decisions and formulate effective strategies to drive business success.
 
 ## Challenges 
 (discuss challenges you faced in the project)
