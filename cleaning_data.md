@@ -1,5 +1,4 @@
-What issues will you address by cleaning the data?
-----------------------------------------------------------------------------------------------
+# What issues will you address by cleaning the data?
 Based on the data provided some of the issues that may be addressed by cleaning the data include:
 
 1. Missing Values: Cleaning the data will involve handling missing values in columns such as 
@@ -22,37 +21,45 @@ are maintained and consistent will be crucial to avoid data inconsistencies and 
 
 7. Data Normalization: If there are redundancies in the data or denormalized data, normalization techniques can be applied to reduce data duplication and improve data integrity.
 
-----------------------------------------------------------------------------
 Queries:
-Below, provide the SQL queries you used to clean your data.
+# Below, provide the SQL queries you used to clean your data.
 
--- Update "city" and "country" columns with 'Other' where NULL or '(not set)'
+## Update "city" and "country" columns with 'Other' where NULL or '(not set)'
+```SQL
 UPDATE all_sessions
 SET city = 'Other'
 WHERE city IS NULL OR city = '(not set)';
+```
 
+```SQL
 UPDATE all_sessions
 SET country = 'Other'
 WHERE country IS NULL OR country = '(not set)';
----------------------------------------------------------------------------
--- Convert "unit_price" column to NUMERIC data type
+```
+## Convert "unit_price" column to NUMERIC data type
+```SQL
 ALTER TABLE analytics
 ALTER COLUMN unit_price TYPE NUMERIC;
-
--- Convert "total_ordered" column to INTEGER data type
+```
+## Convert "total_ordered" column to INTEGER data type
+```SQL
 ALTER TABLE sales_by_sku
 ALTER COLUMN total_ordered TYPE INTEGER;
+```
 
-
--- Convert "unit_price" column to NUMERIC data type
+## Convert "unit_price" column to NUMERIC data type
+```SQL
 ALTER TABLE analytics
 ALTER COLUMN unit_price TYPE NUMERIC;
+```
 
--- Convert "total_ordered" column to INTEGER data type
+## Convert "total_ordered" column to INTEGER data type
+```SQL
 ALTER TABLE sales_by_sku
 ALTER COLUMN total_ordered TYPE INTEGER;
------------------------------------------------------------------------
--- Identify duplicate rows based on all columns and assign a row number
+```
+## Identify duplicate rows based on all columns and assign a row number
+```SQL
 WITH duplicate_rows AS (
     SELECT *,
            ROW_NUMBER() OVER (PARTITION BY fullvisitorid, channelgrouping, time, country, city, 
@@ -72,73 +79,5 @@ WHERE (fullvisitorid, channelgrouping, time, country, city,
            FROM duplicate_rows
            WHERE rn > 1
        );
----------------------------------------------------------------------
-SELECT id FROM all_sessions_filtered;
--- Establish relationship between all_sessions_filtered and analytics
-ALTER TABLE analytics
-ADD FOREIGN KEY (id) REFERENCES all_sessions_filtered (id);
+       ```
 
--- Establish relationship between all_sessions_filtered and sales_report
-ALTER TABLE sales_report
-ADD FOREIGN KEY (productsku) REFERENCES all_sessions_filtered (id);
-
--- Establish relationship between sales_report and sales_by_sku
-ALTER TABLE sales_by_sku
-ADD FOREIGN KEY (productsku) REFERENCES sales_report (productsku);
-
--- Establish relationship between sales_by_sku and products
-ALTER TABLE products
-ADD FOREIGN KEY (productsku) REFERENCES sales_by_sku (productsku);
-
-SELECT productsku, count(1) AS total_counts FROM all_sessions
-GROUP BY productsku
-ORDER BY total_counts DESC
-limit 100;
-
-SELECT * FROM analytics 
-WHERE units_sold IS NOT NULL
-limit 100;
-
-SELECT productrevenue, itemquantity, visitid, productprice, itemrevenue,transactionid, transactionrevenue, productquantity, totaltransactionrevenue FROM all_sessions
-WHERE transactionid IS NOT NULL
-ORDER BY transactionid
-limit 100;
-
-SELECT * FROM all_sessions
-WHERE transactionid IS NOT NULL
-limit 100;
-
-SELECT transactions
-FROM all_sessions
-WHERE transactionid IS NOT NULL
-limit 100;
-
-SELECT * FROM analytics
-limit 100;
-
-SELECT transactionid, COUNT(1) AS total_counts
-FROM all_sessions
-WHERE transactionid IS NOT NULL
-GROUP BY (1)
-ORDER BY total_counts DESC;
-
-SELECT COUNT(1) FROM all_sessions
-WHERE transactionrevenue IS NOT NULL;
-
-SELECT productrevenue, visitid, productprice /1000000 AS product_price, transactionid, totaltransactionrevenue
-FROM all_sessions
-WHERE transactionid IS NOT NULL
-ORDER BY transactionid
-limit 100;
-
-SELECT city, country, totaltransactionrevenue AS TotalTransactionRevenue
-FROM all_sessions
-WHERE transactionid IS NOT NULL
-ORDER BY totaltransactionrevenue DESC
-LIMIT 1;
-
-SELECT city, country, CAST(totaltransactionrevenue/1000000 AS INTEGER) AS TotalTransactionRevenue
-FROM all_sessions
-WHERE transactionid IS NOT NULL
-ORDER BY totaltransactionrevenue DESC
-LIMIT 1;
