@@ -49,6 +49,6 @@ FROM all_sessions
 WHERE transactionid IS NOT NULL
 GROUP BY transactionid, totaltransactionrevenue;
 ```
-# In the above examples, the queries are used to execute the data quality check, data completeness, and data validation processes. 
+### In the above examples, the queries are used to execute the data quality check, data completeness, and data validation processes. 
 The test cases are designed to check specific aspects of the dataset, such as missing values, correctness of data relationships, and consistency of data. 
 The results obtained from these queries will help identify any data issues and validate the accuracy and completeness of the dataset.
