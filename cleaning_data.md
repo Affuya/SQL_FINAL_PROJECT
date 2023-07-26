@@ -79,5 +79,5 @@ WHERE (fullvisitorid, channelgrouping, time, country, city,
            FROM duplicate_rows
            WHERE rn > 1
        );
-       ```
+```
 
