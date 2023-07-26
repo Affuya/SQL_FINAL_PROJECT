@@ -1,6 +1,6 @@
 # Question 1: 
 
-** SQL Queries:**
+**SQL Queries:**
 ```SQL
 SELECT 
   COALESCE(city, 'Other') AS city, 
@@ -17,15 +17,16 @@ ORDER BY total_revenue_numeric DESC
 LIMIT 1;
 ```
 
-# Answer:
+## Answer:
 CITY IS NOT AVAILABLE IN DATASET
 COUNTRY IS UNITED STATES
-TOTALTRANSACTIONREVENUE 1015480000 ###
+TOTALTRANSACTIONREVENUE 1015480000 
 
 
-Question 2: 
+# Question 2: 
 
-SQL Queries:
+**SQL Queries:**
+```SQL
 SELECT 
   city, 
   country, 
@@ -34,13 +35,15 @@ FROM all_sessions
 WHERE productquantity IS NOT NULL
 GROUP BY city, country
 ORDER BY average_products_ordered DESC;
+```
 
-Answer:
+## Answer:
 
 
-Question 3: 
+# Question 3: 
 
-SQL Queries:
+**SQL Queries:**
+```SQL
 SELECT 
   COALESCE(NULLIF(city, ''), 'Other') AS city, 
   COALESCE(NULLIF(country, ''), 'Other') AS country, 
@@ -55,8 +58,9 @@ WHERE v2productcategory IS NOT NULL
 GROUP BY city, country, v2productcategory
 HAVING COUNT(*) > 10
 ORDER BY country, city, order_count DESC;
+```
 
-Answer:
+## Answer:
 In this query, we select the "city," "country," and "v2productcategory" columns, along with the count of orders for each product category (using the COUNT(*) function) from the "all_sessions" table. We filter the results with WHERE v2productcategory IS NOT NULL to consider only rows where the "v2productcategory" is not null.
 
 Next, we use the GROUP BY clause to group the data by "city," "country," and "v2productcategory." This grouping will allow us to calculate the count of orders for each product category within each city and country.
@@ -69,9 +73,10 @@ The result of this query will give you a detailed breakdown of product category 
 
 
 
-Question 4: 
+# Question 4: 
 
-SQL Queries:
+**SQL Queries:**
+```SQL
 WITH ranked_products AS (
   SELECT 
     COALESCE(NULLIF(city, ''), 'Other') AS city, 
@@ -91,8 +96,9 @@ SELECT city, country, v2productname, order_count
 FROM ranked_products
 WHERE rn = 1
 ORDER BY country, city;
+```
 
-Answer:
+## Answer:
 In this query, a Common Table Expression (CTE) named "ranked_products" is used to calculate the order count for each product ("v2productname") within each city and country. 
 The ROW_NUMBER() function assigns a rank to each product based on its order count, partitioned by city and country. 
 The main part of the query then selects the top-selling product from each city and country, along with its order count, by filtering only the rows with a rank of 1 (rn = 1). 
@@ -102,9 +108,9 @@ inventory management, and product strategies.
 
 
 
-Question 5: 
+# Question 5: 
 
-SQL Queries:
+**SQL Queries:**
 
 Answer:
 -----------------------------------------------------------------------------------------------
