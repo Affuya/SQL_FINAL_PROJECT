@@ -1,6 +1,6 @@
 # Question 1: 
 
-# SQL Queries:
+** SQL Queries:**
 ```SQL
 SELECT 
   COALESCE(city, 'Other') AS city, 
@@ -14,9 +14,9 @@ WHERE
   AND country IS NOT NULL
   AND country <> ''
 ORDER BY total_revenue_numeric DESC
-LIMIT 1;```
+LIMIT 1;
 
-### Answer:
+# Answer:
 CITY IS NOT AVAILABLE IN DATASET
 COUNTRY IS UNITED STATES
 TOTALTRANSACTIONREVENUE 1015480000 ###
