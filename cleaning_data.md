@@ -24,7 +24,7 @@ are maintained and consistent will be crucial to avoid data inconsistencies and 
 
 ----------------------------------------------------------------------------
 # Queries:
-# Below, provide the SQL queries you used to clean your data.
+Below, provide the SQL queries you used to clean your data.
 
 ## Update "city" and "country" columns with 'Other' where NULL or '(not set)'
 ```SQL
@@ -36,25 +36,28 @@ UPDATE all_sessions
 SET country = 'Other'
 WHERE country IS NULL OR country = '(not set)';
 ```
----------------------------------------------------------------------------
--- Convert "unit_price" column to NUMERIC data type
+## Convert "unit_price" column to NUMERIC data type
+```SQL
 ALTER TABLE analytics
 ALTER COLUMN unit_price TYPE NUMERIC;
 
 -- Convert "total_ordered" column to INTEGER data type
 ALTER TABLE sales_by_sku
 ALTER COLUMN total_ordered TYPE INTEGER;
+```
 
 
--- Convert "unit_price" column to NUMERIC data type
+## Convert "unit_price" column to NUMERIC data type
+```SQL
 ALTER TABLE analytics
 ALTER COLUMN unit_price TYPE NUMERIC;
 
 -- Convert "total_ordered" column to INTEGER data type
 ALTER TABLE sales_by_sku
 ALTER COLUMN total_ordered TYPE INTEGER;
------------------------------------------------------------------------
--- Identify duplicate rows based on all columns and assign a row number
+```
+## Identify duplicate rows based on all columns and assign a row number
+``` SQL
 WITH duplicate_rows AS (
     SELECT *,
            ROW_NUMBER() OVER (PARTITION BY fullvisitorid, channelgrouping, time, country, city, 
@@ -74,4 +77,4 @@ WHERE (fullvisitorid, channelgrouping, time, country, city,
            FROM duplicate_rows
            WHERE rn > 1
        );
----------------------------------------------------------------------
+```
