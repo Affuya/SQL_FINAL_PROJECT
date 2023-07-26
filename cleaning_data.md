@@ -1,4 +1,4 @@
-What issues will you address by cleaning the data?
+# What issues will you address by cleaning the data?
 ----------------------------------------------------------------------------------------------
 Based on the data provided some of the issues that may be addressed by cleaning the data include:
 
@@ -23,10 +23,11 @@ are maintained and consistent will be crucial to avoid data inconsistencies and 
 7. Data Normalization: If there are redundancies in the data or denormalized data, normalization techniques can be applied to reduce data duplication and improve data integrity.
 
 ----------------------------------------------------------------------------
-Queries:
-Below, provide the SQL queries you used to clean your data.
+# Queries:
+# Below, provide the SQL queries you used to clean your data.
 
--- Update "city" and "country" columns with 'Other' where NULL or '(not set)'
+## Update "city" and "country" columns with 'Other' where NULL or '(not set)'
+```SQL
 UPDATE all_sessions
 SET city = 'Other'
 WHERE city IS NULL OR city = '(not set)';
@@ -34,6 +35,7 @@ WHERE city IS NULL OR city = '(not set)';
 UPDATE all_sessions
 SET country = 'Other'
 WHERE country IS NULL OR country = '(not set)';
+```
 ---------------------------------------------------------------------------
 -- Convert "unit_price" column to NUMERIC data type
 ALTER TABLE analytics
