@@ -15,6 +15,7 @@ WHERE
   AND country <> ''
 ORDER BY total_revenue_numeric DESC
 LIMIT 1;
+```
 
 # Answer:
 CITY IS NOT AVAILABLE IN DATASET
